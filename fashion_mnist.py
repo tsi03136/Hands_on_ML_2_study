@@ -6,7 +6,7 @@
 # ERROR : his TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
 # To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags. <- 해결하는 코드
 import pandas as pd
-import tensorflow as tf
+import numpy as np
 from tensorflow import keras
 import matplotlib.pyplot as plt
 
@@ -32,16 +32,13 @@ print(class_names[y_train[0]], y_train[0])
 model = keras.models.Sequential()
 model.add(keras.layers.Flatten(input_shape=[28, 28]))
 model.add(keras.layers.Dense(300, activation="relu"))
-
 model.add(keras.layers.Dense(100, activation="relu"))
-
 model.add(keras.layers.Dense(10, activation="softmax"))
 
 # print(model.layers)
-
 # bias = 편향, weights = 가중치
 # 시퀸셜 레이어는 weight값이 존재하지 않음
-hidden1 = model.layers[1]
+#hidden1 = model.layers[1]
 # weights, biases = hidden1.get_weights()
 # print(weights, biases)
 # print(weights.shape, biases.shape)
@@ -53,7 +50,7 @@ hidden1 = model.layers[1]
 #     a = 0
 # print(a)
 
-hidden1 = model.layers[2]
+#hidden1 = model.layers[2]
 # weights, biases = hidden1.get_weights()
 # print(weights, biases)
 # print(weights.shape, biases.shape)
@@ -63,7 +60,7 @@ hidden1 = model.layers[2]
 #         a+=j
 # print(a)
 
-hidden1 = model.layers[3]
+#hidden1 = model.layers[3]
 # weights, biases = hidden1.get_weights()
 # # print(weights, biases)
 # print(weights.shape, biases.shape)
@@ -97,3 +94,7 @@ y_proba = model.predict(X_new)
 print("y_proba.round(2) : ",y_proba.round(2))
 
 # 가장 높은 확률을 가진 클래스에만 관심
+y_pred = model.predict_classes(X_new)
+print("y_pred : ",y_pred)
+
+print("print("",np.array(class_names)[y_pred]) : ",np.array(class_names)[y_pred])
